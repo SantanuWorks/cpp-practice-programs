@@ -2,19 +2,19 @@
 using namespace std;
 int stk[10];
 int t;
-int Pop(){
+int Po(){
 	return 0;
 }
-void Push(){
+void Pu(){
 	
 }
-int top(){
+int to(){
 	return 0;
 }
-bool isEmpty(){
+bool isEty(){
 	return false;
 } 
-int size(){
+int siz(){
 	return 0;
 }
 void display(){
