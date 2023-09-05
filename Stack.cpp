@@ -1,31 +1,75 @@
 #include <bits/stdc++.h>
+#define MAX 10
 using namespace std;
-int stk[10];
-int t;
-int Po(){
-	return 0;
+class Stack{
+	int arr[MAX];
+	int top;
+	public:
+	Stack(){ top = -1; }
+	void push(int);
+	void pop();
+	void display();
+	bool isFull();
+	bool isEmpty();
+	int size();
+};
+int Stack::size(){
+	return top+1;	
 }
-void Pu(){
-	
+void Stack::push(int n){
+	cout << endl;	
+	if(isFull()) cout << "Stack is full!";
+	else{
+		top ++; 
+		arr[top] = n;
+		cout << n << " is pushed!";
+	}
+	cout << endl;	
 }
-int to(){
-	return 0;
+void Stack::pop(){
+	cout << endl;	
+	if(isEmpty()) cout << "Stack is empty!";
+	else{
+		cout << arr[top] << " is popped!";
+		top --;
+	}
+	cout << endl;	
 }
-bool isEty(){
-	return false;
-} 
-int siz(){
-	return 0;
+void Stack::display(){
+	cout << endl;		
+	if(isEmpty()) cout << "Stack is empty!";
+	else{
+		for(int i = size()-1; i >= 0; i --){
+			cout << arr[i] << " ";
+		}
+	}
+	cout << endl;	
 }
-void display(){
-	cout << endl;
-	int s = t + 1;
-	if( s==0 ) cout << "Stack is empty...";
-	else for( int i = s-1; s >= 0; s --) cout << stk[i] << " ";
-	cout << endl;
+bool Stack::isFull(){
+	if(size()==MAX) return true;
+	else return false;
+}
+bool Stack::isEmpty(){
+	if(size()==0) return true;
+	else return false;
 }
 int main(){
-	t = -1;
-	display();
+	Stack stk;
+	stk.display();
+	stk.push(12);
+	stk.push(56);
+	stk.push(32);
+	stk.push(64);
+	stk.push(86);
+	stk.display();
+	stk.pop();
+	stk.pop();
+	stk.display();
+	stk.pop();
+	stk.pop();
+	stk.display();
+	stk.push(43);
+	stk.push(17);
+	stk.display();
 	return 0;
 }
