@@ -34,13 +34,22 @@ void display(){
 	else for( int i = top; i >= 0; i --) printf("%d ", stk[i]);
 	printf("\n");
 }
+int topElement(){
+	return stk[top];
+}
 int main(){
 	top = -1;
-	push(10); push(20); push(30); push(40);
+	push(10); push(20); 
+	printf("\nTop element is %d\n",stk[top]);
+	push(30); push(40);
 	display();
-	pop(); pop();
+	pop(); 
+	printf("\nTop element is %d\n",stk[top]);
+	pop();
 	display();
-	push(50); push(60);
+	push(50);
+	printf("\nTop element is %d\n",stk[top]);
+	push(60);
 	display();
 	pop(); 
 	display();
