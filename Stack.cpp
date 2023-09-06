@@ -12,6 +12,7 @@ class Stack{
 	bool isFull();
 	bool isEmpty();
 	int size();
+	void topElement();
 };
 int Stack::size(){
 	return top+1;	
@@ -53,22 +54,29 @@ bool Stack::isEmpty(){
 	if(size()==0) return true;
 	else return false;
 }
+void Stack::topElement(){
+	cout << endl << "top element is " << arr[top] << endl;
+}
 int main(){
 	Stack stk;
 	stk.display();
 	stk.push(12);
 	stk.push(56);
 	stk.push(32);
+	stk.topElement();
 	stk.push(64);
 	stk.push(86);
 	stk.display();
 	stk.pop();
+	stk.topElement();
 	stk.pop();
 	stk.display();
 	stk.pop();
+	stk.topElement();
 	stk.pop();
 	stk.display();
 	stk.push(43);
+	stk.topElement();
 	stk.push(17);
 	stk.display();
 	return 0;
