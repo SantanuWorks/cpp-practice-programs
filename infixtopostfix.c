@@ -2,9 +2,11 @@
 #define MAX 100
 char stack[MAX];
 int top;
+int isEmpty(){ if( top+1 == 0 ) return 1; else return 0; } 
+int isFull(){ if( top+1 == MAX ) return 1; else return 0; }
+char peek(){ return stack[top]; }
 int precedence(char ch){
-	if(ch =='(' || ch ==')') return 4;
-	else if(ch =='^') return 3;
+	if(ch =='^') return 3;
 	else if(ch =='*' || ch =='/') return 2;
 	else if(ch =='+' || ch =='-') return 1;
 	else return 0;
@@ -12,58 +14,32 @@ int precedence(char ch){
 // return 0, associativity left to right
 // return 1, associativity right to left
 int associativity(char ch){
-	if(ch =='(' || ch ==')') return 0;
-	else if(ch =='^') return 1;
+	if(ch =='^') return 1;
 	else if(ch =='*' || ch =='/') return 0;
 	else if(ch =='+' || ch =='-') return 0;
 }
-int isEmpty(){
-	if(top==-1) return 1;
-	else return 0;
-} 
-int isFull(){
-	if(top==MAX-1) return 1;
-	else return 0;
-}
 char pop(){
-	if(isEmpty()) printf("\nStack is empty...\n");
-	else{
+	if(!isEmpty()){
 		char v = stack[top];
 		top --;
 		return v;
 	}
 }
 void push(char ch){
-	if(isFull()) printf("\nStack is full...\n");
-	else{
+	if(!isFull()){
 		top ++;
 		stack[top] = ch;
 	}
 }
-char peek(){
-	return stack[top];
-}
 void InfixToPostfix(char exp[], int n){
-	for(int i = 0; i < 9; i ++){
-		if( precedence(exp[i])==0 ) printf("%c", exp[i]);
-		else if( exp[i]=='(' || isEmpty()==1 || peek()=='(' || (precedence(peek()) < precedence(exp[i])) ) 
-			push(exp[i]);
+	for(int i = 0; i < n; i ++){
+		if( !precedence(exp[i]) ) printf("%c", exp[i]);
+		else if( isEmpty() ) push(exp[i]);
 		else if( exp[i]==')' ){
-			char v;
-			while( (v=pop())!='(' ) 
-				if( v!='(' || v!=')' ) 
-					printf("%c", v);
+			while( peek()!='(' ) printf("%c", pop());
+			pop();
 		}
-		else if( precedence(peek()) > precedence(exp[i]) ) 
-			while( precedence(exp[i]) < precedence(peek()) ) 
-				printf("%c", pop());
-		else{
-			if( associativity(exp[i])==0 ){
-				printf("%c", pop());
-				push(exp[i]);
-			}
-			else push(exp[i]);
-		}
+		else if( peek()=='(' ) push(exp[i]);
 	}
 	while(isEmpty()!=1) printf("%c", pop());
 }
