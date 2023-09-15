@@ -39,19 +39,11 @@ int topElement(){
 }
 int main(){
 	top = -1;
-	push(10); push(20); 
-	printf("\nTop element is %d\n",stk[top]);
-	push(30); push(40);
-	display();
-	pop(); 
-	printf("\nTop element is %d\n",stk[top]);
-	pop();
-	display();
-	push(50);
-	printf("\nTop element is %d\n",stk[top]);
-	push(60);
-	display();
-	pop(); 
-	display();
+	int ch = 1;
+	for(; ch != 4 ;){
+		printf("1. Push\n2. Pop\n3. Display\n4. Exit\n");
+		printf("\nChoose the operation: ");
+		scanf("%d", &ch);
+	}
 	return 0;
 }
